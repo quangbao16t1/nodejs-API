@@ -1,0 +1,30 @@
+{
+  "name": "nodejs-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quangbao16t1/nodejs-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quangbao16t1/nodejs-API/issues"
+  },
+  "homepage": "https://github.com/quangbao16t1/nodejs-API#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^14.3.0",
+    "express": "^4.17.2",
+    "helmet": "^5.0.2",
+    "mongose": "^0.0.2-security",
+    "monk": "^7.3.4",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
+  }
+}
