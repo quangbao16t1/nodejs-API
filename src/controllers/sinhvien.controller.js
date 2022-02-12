@@ -17,29 +17,6 @@ SinhvienController.getAllSinhviens = async (req, res) => {
        }
 };
 
-// SinhvienController.createSinhvien = async (req, res) => {
-//        const sinhvien = SinhvienModel.create({
-//               _id: mongoose.Types.ObjectId(),
-//               mssv: req.body.mssv,
-//               name: req.body.name,
-//               lopId: req.body.lopId
-//               });
-//         return sinhvien
-//               .save()
-//               .then((newSinhvien) => {
-//                      res.status(201).json({
-//                             message: "create sinh vien successfully!",
-//                             SinhvienModel: newSinhvien
-//                      });
-//               })
-//               .catch((error) => {
-//                      res.status(500).json({
-//                             message: "Can not created!",
-//                             error: error.message
-//                      });
-//               });
-// }
-
 SinhvienController.getSinhvienById = async (req, res) => {
        try {
               const id = req.params.id;
@@ -54,6 +31,51 @@ SinhvienController.getSinhvienById = async (req, res) => {
                      error: error.message,
               });
        }
+}
+
+// SinhvienController.createSinhvien = async (req, res) => {
+       
+//        try {
+//               const sinhvien = await SinhvienModel.create({
+//                      _id: mongoose.Types.ObjectId(),
+//                      mssv: req.body.mssv,
+//                      name: req.body.name,
+//                      lopId: req.body.lopId
+//                      });
+//               if(sinhvien) {
+//                      res.status(201).json({
+//                             message: "create sinh vien successfully!",
+//                      });
+//               }
+//        } catch (error) {
+//               res.status(500).json({
+//                      message: "Can not created!",
+//                      error: error.message
+//               });
+//        }
+// }
+
+SinhvienController.createSinhvien = async (req, res) => {
+       const sinhvien = await SinhvienModel.create({
+              _id: mongoose.Types.ObjectId(),
+              mssv: req.body.mssv,
+              name: req.body.name,
+              lopId: req.body.lopId
+              });
+        return sinhvien
+              .save()
+              .then((newSinhvien) => {
+                     res.status(201).json({
+                            message: "create sinh vien successfully!",
+                            SinhvienModel: newSinhvien
+                     });
+              })
+              .catch((error) => {
+                     res.status(500).json({
+                            message: "Can not created!",
+                            error: error.message
+                     });
+              });
 }
 
 export default SinhvienController;
