@@ -8,6 +8,8 @@ import dotenv from "dotenv";
 import connectDatabase  from "./src/configs/db.config.js";
 // import apiRouter from "./src/routes/router.js";
 import sinhvienRouter from "./src/routes/sinhvien.routes.js";
+import apiRouter from "./src/routes/router.js";
+import lopRouter from "./src/routes/lop.routes.js";
 dotenv.config();
 
 connectDatabase();
@@ -35,7 +37,8 @@ app.use(helmet());
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use('/api/', sinhvienRouter);
+app.use('/', sinhvienRouter);
+app.use('/api/', lopRouter);
 app.get("/", (req, res) => {
        console.log("dsadasdas");
        res.json({

@@ -25,7 +25,7 @@ SinhvienController.getSinhvienById = async (req, res) => {
                      success: true,
                      message: `More on ${sinhvien.name}`,
                      sinhvien: sinhvien,
-                     });
+              });
        } catch (error) {
               res.status(500).json({
                      error: error.message,
@@ -34,7 +34,7 @@ SinhvienController.getSinhvienById = async (req, res) => {
 }
 
 // SinhvienController.createSinhvien = async (req, res) => {
-       
+
 //        try {
 //               const sinhvien = await SinhvienModel.create({
 //                      _id: mongoose.Types.ObjectId(),
@@ -61,8 +61,8 @@ SinhvienController.createSinhvien = async (req, res) => {
               mssv: req.body.mssv,
               name: req.body.name,
               lopId: req.body.lopId
-              });
-        return sinhvien
+       });
+       return sinhvien
               .save()
               .then((newSinhvien) => {
                      res.status(201).json({
@@ -76,6 +76,46 @@ SinhvienController.createSinhvien = async (req, res) => {
                             error: error.message
                      });
               });
+}
+
+SinhvienController.deleteSinhvienById = async (req, res) => {
+       try {
+              const id = req.params.id;
+              const result = await SinhvienService.deleteSinhvienById(id);
+              res.status(200).json({
+                     success: true,
+                     message: `Delete ${id} thanhcong!`,
+                     result: result,
+              })
+       } catch (error) {
+              res.status(404).json({
+                     message: "Cant not found",
+                     error: error.message,
+              })
+       }
+}
+
+SinhvienController.updateSinhVienById = async (req, res) => {
+       try {
+              const id = req.params.id;
+              const sinhvien = {
+                     _id: req.body._id,
+                     mssv: req.body.mssv,
+                     name: req.body.name,
+                     lopId: req.body.lopId
+              }
+              const result = await SinhvienService.updateSinhVienById(id, sinhvien );
+              res.status(200).json({
+                     success: true,
+                     message: "Update Success!!!",
+                     result: result,
+              })
+       } catch (error) {
+              res.status(500).json({
+                     message: "Cant update sinhvien ",
+                     error: error.message
+              })
+       }
 }
 
 export default SinhvienController;
